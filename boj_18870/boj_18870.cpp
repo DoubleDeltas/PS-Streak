@@ -73,7 +73,23 @@ void quicksort(int low, int high) {
 	// for all x, y s.t. x < border < y -> ar[x] < ar[border](pivotitem) < ar[y]
 	// and pivot point is ordered
 
-	//recursive
+	int dupcnt = 1;
+	int minrank = ar[border].second; // min. rank of data that equals ar[border].first
+	for (int i=border+1; i<=high; i++) {
+		if (ar[border] == ar[i]) {
+			dupcnt++;
+			if (ar[i].second < minrank)
+				minrank = ar[i].second;
+		}
+	}
+	for (int i=border; i<=high; i++) {
+		if (ar[border] == ar[i])
+			ar[i].second = minrank;
+		else
+			ar[i].second -= dupcnt - 1;
+	}
+
+	// recursive
 	quicksort(low, border - 1);
 	quicksort(border + 1, high);
 }
