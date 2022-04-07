@@ -1,95 +1,124 @@
 #include <iostream>
-#include <utility> // pair
+#include <vector>
+#include <climits>
 using namespace std;
 
 void solve();
 
-void quicksort(int low, int high);
+int binsearch(int x, int lo, int hi);
+void swap(int& x1, int& x2);
 
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
 
 	solve();
-	
+
 	return 0;
 }
 
 #define MAX_N 1000000
 
-pair<int, int> ar[MAX_N];
+class Heap {
+private:
+	int data[MAX_N + 1];
+	int size;
+
+public:
+	Heap() { data[0] = INT_MIN; size = 0; }
+	void push(int x) {
+		size++;
+		data[size] = x;
+
+		int cur = size;
+
+		while (!(data[cur / 2] < x)) {
+			swap(data[cur], data[cur / 2]);
+			cur = cur / 2;
+		}
+		// heap[0](heap[1]'s parent) is always 0, loop would be stopped
+	}
+	int pop() {
+		if (size == 0)
+			return -1; // error
+
+		int res = data[1];
+
+		data[1] = data[size];
+		size--;
+
+		int cur = 1;
+		int child;
+		while (true) {
+			child = cur * 2;
+			if (child > size)
+				break;
+
+			if (child + 1 <= size && data[child + 1] < data[child]) {
+				child++; // choose right child
+			}
+
+			if (!(data[cur] < data[child])) {
+				swap(data[cur], data[child]);
+				cur = child;
+			}
+			else break;
+		}
+		return res;
+	}
+	int getSize() { return size; }
+};
+
+int in[MAX_N];
+int pre[MAX_N];
+Heap h;
 
 void solve() {
 	int n;
 	int tmp;
 
+	// input
 	cin >> n;
 	for (int i = 0; i < n; i++) {
 		cin >> tmp;
-		ar[i] = make_pair(tmp, i);
+		in[i] = tmp;
+		h.push(tmp);
 	}
 
-	quicksort(0, n - 1);
-
-	// re-rank for same order
-//	int dupcnt = 0; // counter for duplicated data
-//	for (int i = 1; i < n; i++) {
-//		if (ar[i].first == ar[i - 1].first) {
-//			dupcnt++;
-//			ar[i].second -= dupcnt;
-//		}
-//	}
-
-	//test
-	for (int i = 0; i < n; i++)
-		cout << ar[i].first << ' ';
-	cout << '\n';
-	for (int i = 0; i < n; i++)
-		cout << ar[i].second << ' ';
-
-}
-
-void swapPair(pair<int, int>& x, pair<int, int>& y) {
-	int tmp = x.first;
-	x.first = y.first;
-	y.first = tmp;
-}
-
-void quicksort(int low, int high) {
-	if (low >= high)
-		return; // end recursive
-	
-	// ar[low] is pivot
-
-	int border = low;
-	for (int i = low + 1; i <= high; i++) {
-		if (ar[i].first < ar[low].first) {
-			border++;
-			swap<int, int>(ar[i], ar[border]);
+	// pop
+	int p = 0;
+	while (h.getSize() > 0) {
+		tmp = h.pop();
+		if (p == 0 || pre[p - 1] != tmp) {
+			pre[p] = tmp;
+			p++;
 		}
 	}
-	swap<int, int>(ar[low], ar[border]);
 
-	// for all x, y s.t. x < border < y -> ar[x] < ar[border](pivotitem) < ar[y]
-	// and pivot point is ordered
-
-	int dupcnt = 1;
-	int minrank = ar[border].second; // min. rank of data that equals ar[border].first
-	for (int i=border+1; i<=high; i++) {
-		if (ar[border] == ar[i]) {
-			dupcnt++;
-			if (ar[i].second < minrank)
-				minrank = ar[i].second;
-		}
+	// search rank and output
+	for (int i = 0; i < n; i++) {
+		cout << binsearch(in[i], 0, p-1) << ' ';
 	}
-	for (int i=border; i<=high; i++) {
-		if (ar[border] == ar[i])
-			ar[i].second = minrank;
-		else
-			ar[i].second -= dupcnt - 1;
-	}
+}
 
-	// recursive
-	quicksort(low, border - 1);
-	quicksort(border + 1, high);
+int binsearch(int x, int lo, int hi) {
+	int mid;
+
+	while (true) {
+		mid = (lo + hi) / 2;
+		if (pre[mid] == x)
+			return mid;
+		else if (x < pre[mid])
+			hi = mid - 1;
+		else // pre[mid] < x
+			lo = mid + 1;
+	}
+	// it's garenteed that x exists in pre[]
+	// so no need termination condition
+}
+
+void swap(int& x1, int& x2) {
+	int tmp = x1;
+	x1 = x2;
+	x2 = tmp;
 }
