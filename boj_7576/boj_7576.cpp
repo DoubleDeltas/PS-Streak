@@ -26,17 +26,6 @@ int box[M_MAX][N_MAX];
 bool isSearched[M_MAX][N_MAX];
 int m, n;
 
-void printBox(int k, int qs) {
-	cout << "---- cnt = " << k << "----\n";
-	for (int j = 0; j < n; j++) {
-		for (int i = 0; i < m; i++) {
-			cout << box[i][j] << ' ';
-		}
-		cout << '\n';
-	}
-	cout << "tmpq size: " << qs << '\n';
-}
-
 void solve() {
 	cin >> m >> n;
 	for (int j = 0; j < n; j++)
@@ -88,7 +77,6 @@ void solve() {
 				box[ni][nj] = RED;
 			}
 		}
-		//printBox(cnt, tmpq.size());
 	}
 	
 	// searching end, find green tomatoes
