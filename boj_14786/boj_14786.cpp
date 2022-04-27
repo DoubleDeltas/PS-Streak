@@ -6,9 +6,9 @@ void solve();
 
 int main() {
 	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
-	cout.tie(nullptr);
-	cout.precision(15);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	cout.precision(6);
 	solve();
 	return 0;
 }
@@ -22,9 +22,9 @@ void solve() {
 	double y, yp;
 	while (true) {
 		y = a * x + b * sin(x) - c;
-		yp = a + b * cos(x)
+		yp = a + b * cos(x);
 
-		if (abs(y) < 1e-9)
+		if (abs(y) < 1e-14)
 			break;
 
 		x -= y/yp;
