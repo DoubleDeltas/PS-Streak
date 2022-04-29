@@ -5,10 +5,10 @@ using namespace std;
 #define MAX_N 200000
 #define MODULO 1000000007
 
-char s[MAX_N+1];
+char s[MAX_N + 1];
 int w[MAX_N], e[MAX_N];
 
-inline int powmod(int x) {
+int powmod(int x) {
 	if (x < 32)
 		return (1 << x) % MODULO;
 	long long s = powmod(x / 2);
@@ -40,8 +40,8 @@ void solve() {
 			e[i] = e[i + 1];
 	}
 
-	int res = 0;
-	int e_term;
+	long long res = 0;
+	long long e_term;
 	for (int i = 0; i < n; i++) {
 		if (s[i] == 'H') {
 			e_term = powmod(e[i]) - e[i] - 1;
