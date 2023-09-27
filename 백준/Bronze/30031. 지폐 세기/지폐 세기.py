@@ -1,0 +1,1 @@
+print(sum(map(lambda x:{136:1,142:5,148:10,154:50}[int(x[0])],[input().split()for i in range(int(input()))]))*1000)
