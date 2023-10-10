@@ -8,7 +8,7 @@ public class Main {
 	static BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer tk = null;
 
-	static int R, C, T, ans, cy, cx;
+	static int R, C, T, ans, cy;
 	static int[][] A, tmp;
 	static int[] dy = {-1, 1, 0, 0};
 	static int[] dx = {0, 0, -1, 1};
@@ -30,7 +30,6 @@ public class Main {
 				A[r][c] = tmp[r][c] = Integer.parseInt(tk.nextToken());
 				if (cy == 0 && A[r][c] == -1) {
 					cy = r;
-					cx = c;
 				}
 			}
 		}
@@ -40,6 +39,7 @@ public class Main {
 		
 		for (int t=0; t<T; t++) {
 			spread();
+			commit();
 			circulate(ccwPath);
 			circulate(cwPath);
 			commit();
@@ -57,7 +57,7 @@ public class Main {
 	// 공기청정기는 항상 1열, 위 아래로 2칸 이상 떨어져있음 
 	static void initCcwPath() {
 		int y = cy;
-		int x = cx;
+		int x = 0;
 		for (int i=0; i<C-1; i++) {
 			x++;
 			ccwPath.add(new Coord(y, x));
@@ -78,7 +78,7 @@ public class Main {
 	
 	static void initCwPath() {
 		int y = cy+1;
-		int x = cx;
+		int x = 0;
 		for (int i=0; i<C-1; i++) {
 			x++;
 			cwPath.add(new Coord(y, x));
@@ -108,17 +108,16 @@ public class Main {
 	static void spread() {
 		for (int r=0; r<R; r++) {
 			for (int c=0; c<C; c++) {
-				int s = 0;
+				int s = A[r][c] / 5;
 				for (int d=0; d<4; d++) {
 					int nr = r + dy[d];
 					int nc = c + dx[d];
 					if (nr < 0 || nr >= R || nc < 0 || nc >= C) continue;
 					if (A[nr][nc] == -1) continue;
 					
-					tmp[nr][nc] += A[r][c] / 5;
-					s += A[r][c] / 5;
+					tmp[nr][nc] += s;
+					tmp[r][c] -= s;
 				}
-				tmp[r][c] -= s;
 			}
 		}
 	}
@@ -128,9 +127,8 @@ public class Main {
 		for (Coord coord: path) {
 			int y = coord.y;
 			int x = coord.x;
-			int t = tmp[y][x];
 			tmp[y][x] = prev;
-			prev = t;			
+			prev = A[y][x];		
 		}
 	}
 	
