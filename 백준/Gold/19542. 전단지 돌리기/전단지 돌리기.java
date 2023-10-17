@@ -31,6 +31,7 @@ public class Main {
 		
 		visited = new boolean[N+1];
 		dfs(S);
+        ans *= 2;
 		System.out.println(ans);
 	}
 	
@@ -40,7 +41,7 @@ public class Main {
 		int d = 0;
 		for (int n: graph.get(v)) {
 			int result = dfs(n);
-			if (result > D) ans += 2;
+			if (result > D) ans++;
 			d = Math.max(d, result);
 		}
 		return d + 1;
