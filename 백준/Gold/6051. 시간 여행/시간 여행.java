@@ -44,13 +44,11 @@ public class Main {
 	
 	static class Node {
 		int n;
-		Node prev, next;
+		Node prev;
 		
 		Node(int n, Node prev) {
 			this.n = n;
 			this.prev = prev;
-			if (prev != null)
-				prev.next = this;
 		}
 	}
 }
