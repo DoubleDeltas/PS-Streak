@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-
-//TODO: "982 2"에 대한 해결 방법
 public class Main {
 	static BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder sb = new StringBuilder();
@@ -16,19 +14,14 @@ public class Main {
 	static int A, B;
     
 	static final char[] NAME = {'D', 'S', 'L', 'R'};
-	static final int[][] DUPS = {
-			{2, 3}, // {3, 2},		// "LR" = "RL" = ""  // why?
-			{3, 3, 3},			// "RRR" = "L"
-			{2, 2, 2},			// "LLL" = "R"
-			{3, 3},				// "RR" = "LL"
-	};
-	
-    static int[][] f = new int[10000][4];
+		
+    static int[][] f;
     
     static Queue<Node> q = new ArrayDeque<>();
     static boolean[] enqueued = new boolean[10000];
     
     public static void main(String[] args) throws Exception {
+        f = new int[10000][4];
         for (int i=0; i<10000; i++) {
             f[i][0] = (2 * i) % 10000;
             f[i][1] = (i + 9999) % 10000;
@@ -41,15 +34,14 @@ public class Main {
         	tk = new StringTokenizer(rd.readLine());
             A = Integer.parseInt(tk.nextToken());
             B = Integer.parseInt(tk.nextToken());
-
             bfs();
         }
         System.out.println(sb);
     }
     
     static void bfs() {
-    	q.clear();
         Arrays.fill(enqueued, false);
+        q.clear();
         
         for (int i=0; i<4; i++) {
         	int x = f[A][i];
@@ -59,7 +51,6 @@ public class Main {
         
         while (true) {
         	Node node = q.poll();
-        	if (isMeaningless(node)) continue;
         	
         	int n = node.n;
         	if (n == B) {
@@ -74,22 +65,6 @@ public class Main {
         		q.add(new Node(x, i, node));
         	}
         }
-    }
-    
-    static boolean isMeaningless(Node node) {
-    	for (int i=0; i < DUPS.length; i++) {
-    		if (endsWith(node, DUPS[i])) return true;
-    	}
-    	return false;
-    }
-    
-    static boolean endsWith(Node node, int[] ops) {
-    	for (int i = ops.length - 1; i>=0; i--) {
-    		if (node == null) return false;
-    		if (node.n != ops[i]) return false;
-    		node = node.prev;
-    	}
-    	return true;
     }
     
     static void print(Node node) {
