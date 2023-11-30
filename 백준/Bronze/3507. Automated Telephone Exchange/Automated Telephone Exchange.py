@@ -1,0 +1,1 @@
+print(max(99-abs(100-int(input())),0))
