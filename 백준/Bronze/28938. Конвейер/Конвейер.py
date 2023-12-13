@@ -1,0 +1,1 @@
+input();print(['Stay','Right','Left'][min(max(sum(map(int,input().split())),-1),1)])
