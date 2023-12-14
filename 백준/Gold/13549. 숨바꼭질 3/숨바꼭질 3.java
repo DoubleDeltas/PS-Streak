@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -10,7 +11,7 @@ public class Main {
 	static StringTokenizer tk = null;
 
 	static int N, K;
-	static PriorityQueue<Node> pq = new PriorityQueue<>((n1, n2) -> n1.d - n2.d);
+	static Deque<Node> dq = new ArrayDeque<>();
 	static boolean[] visited;
 	
 	public static void main(String[] args) throws Exception {
@@ -20,10 +21,10 @@ public class Main {
 		
 		visited = new boolean[200000];
 		
-		pq.add(new Node(N, 0));
+		dq.offerFirst(new Node(N, 0));
 		
 		while (true) {
-			Node node = pq.poll();
+			Node node = dq.pollFirst();
 			int p = node.p;
 			int d = node.d;
 			
@@ -36,10 +37,10 @@ public class Main {
 			visited[p] = true;
 			
 			if (p > 0)
-				pq.offer(new Node(p - 1, d + 1));
+				dq.offerLast(new Node(p - 1, d + 1));
 			if (p < K) {
-				pq.offer(new Node(p + 1, d + 1));
-				pq.offer(new Node(p * 2, d));
+				dq.offerLast(new Node(p + 1, d + 1));
+				dq.offerFirst(new Node(p * 2, d));
 			}
 		}
 	}
