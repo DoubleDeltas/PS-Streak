@@ -1,0 +1,1 @@
+exec('print(*map(lambda w:w[::-1],input().split()));'*int(input()))
