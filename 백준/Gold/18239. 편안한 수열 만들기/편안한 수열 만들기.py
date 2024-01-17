@@ -1,0 +1,31 @@
+N,K=map(int,input().split())
+if N == 2:
+  print("YES")
+  print("swap 1 2")
+  print("swap 1 2")
+  print("swap 1 2")
+  print("swap 1 2")
+  print("swap 1 2")
+elif N == 3:
+  print("NO")
+elif K == 1:
+  print("YES")
+  print(f"swap 1 {N}")
+  print(f"reverse 2 {N-1}")
+  print(f"reverse 1 {N-1}")
+  print("swap 1 2")
+  print("swap 1 2")
+elif K == N-1:
+  print("YES")
+  print(f"swap 1 {N}")
+  print(f"reverse 2 {N-1}")
+  print(f"reverse 2 {N}")
+  print("swap 1 2")
+  print("swap 1 2")
+else:
+  print("YES")
+  print(f"reverse 1 {K}")
+  print(f"reverse {K+1} {N}")
+  print(f"reverse 1 {N}")
+  print("swap 1 2")
+  print("swap 1 2")
