@@ -1,0 +1,1 @@
+solution=lambda A,B:1 if len(A)>len(B)else -1 if len(B)>len(A)else 1 if sum(A)>sum(B)else -1 if sum(A)<sum(B) else 0
