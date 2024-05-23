@@ -1,0 +1,1 @@
+solution=lambda a,k:[*map(lambda n:[n+k,n*k][k%2],a)]
