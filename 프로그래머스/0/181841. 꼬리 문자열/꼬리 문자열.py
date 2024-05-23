@@ -1,0 +1,1 @@
+solution=lambda l,x:''.join(s for s in l if not x in s)
