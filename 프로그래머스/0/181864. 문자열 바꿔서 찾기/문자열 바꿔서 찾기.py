@@ -1,0 +1,1 @@
+solution=lambda s,t:+(t in''.join(map(lambda c:{'A':'B','B':'A'}[c],s)))
