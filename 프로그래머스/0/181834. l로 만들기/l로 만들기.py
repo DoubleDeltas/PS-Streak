@@ -1,0 +1,1 @@
+solution=lambda s:''.join('l'if c<'l'else c for c in s)
