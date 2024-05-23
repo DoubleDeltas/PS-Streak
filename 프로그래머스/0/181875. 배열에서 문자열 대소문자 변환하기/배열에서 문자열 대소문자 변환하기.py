@@ -1,0 +1,1 @@
+solution=lambda L:[[str.lower,str.upper][i%2](s)for i,s in enumerate(L)]
