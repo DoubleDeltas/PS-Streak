@@ -1,0 +1,1 @@
+solution=lambda s:[w for w in sorted(s.split('x')) if w]
