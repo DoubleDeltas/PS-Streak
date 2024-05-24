@@ -27,8 +27,4 @@ class Solution {
     static int add(int a, int b) {
         return (a + b) % MOD;
     }
-    
-    static int times(int a, int b) {
-        return (a * b) % MOD;
-    }
 }
