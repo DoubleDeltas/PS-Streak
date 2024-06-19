@@ -1,10 +1,1 @@
-ans = 0
-for t in range(int(input())):
-    s=input()
-    if s.count('.') != 1:
-        continue
-    n,x=s.split('.')
-    N,X=len(n),len(x)
-    if 0 < N <= 8 and 0 < X <= 3:
-        ans += 1
-print(ans)
+print(sum(1 for _ in range(int(input()))if(lambda s:1==s.count('.')and(lambda n,x:0<len(n)<9 and 0<len(x)<4)(*s.split('.')))(input())))
