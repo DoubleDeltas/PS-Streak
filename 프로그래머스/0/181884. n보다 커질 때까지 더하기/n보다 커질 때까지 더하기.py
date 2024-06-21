@@ -1,0 +1,1 @@
+solution=lambda a,n:min([10001]+[sum(a[:i])for i in range(1,len(a)+1)if sum(a[:i])>n])
