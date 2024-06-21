@@ -1,0 +1,1 @@
+solution=lambda a,n:[*map(lambda X:X[1]+n if X[0]%2!=len(a)%2 else X[1],enumerate(a))]
