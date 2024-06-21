@@ -1,0 +1,1 @@
+solution=lambda P,k:sum([k*[''.join(c*k for c in l)]for l in P],[])
