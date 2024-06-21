@@ -1,0 +1,1 @@
+solution=lambda A:[[c for c in r]+[0]*max(0,len(A)-len(A[0]))for r in A]+[[0]*len(A[0])]*max(0,len(A[0])-len(A))
