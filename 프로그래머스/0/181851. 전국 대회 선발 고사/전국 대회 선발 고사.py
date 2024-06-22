@@ -1,1 +1,1 @@
-solution=lambda R,A:sum(x*100**(2-k)for k,x in enumerate([j for _,j in sorted([(r,i)for(i, r),a in zip(enumerate(R),A)if a])][:3]))
+solution=lambda R,A:sum(x*100**(2-k)for k,x in enumerate([j for _,j in sorted([(r,i)for(i,r),a in zip(enumerate(R),A)if a])][:3]))
