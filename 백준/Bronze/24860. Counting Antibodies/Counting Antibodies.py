@@ -1,0 +1,1 @@
+P=lambda:eval(input().replace(' ','*'));print((P()+P())*P())
