@@ -1,0 +1,1 @@
+print(sorted([s for _ in[0]*int(input())if len(s:=input())==3])[0])
