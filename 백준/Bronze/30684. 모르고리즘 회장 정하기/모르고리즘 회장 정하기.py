@@ -1,1 +1,1 @@
-print(sorted([s for _ in[0]*int(input())if len(s:=input())==3])[0])
+print(min(s for s in open(0)if len(s)==4))
