@@ -1,1 +1,1 @@
-print(oct(int(input(),2))[2:])
+print('%o'%int(input(),2))
