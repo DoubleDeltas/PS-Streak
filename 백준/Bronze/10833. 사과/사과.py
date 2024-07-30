@@ -1,0 +1,1 @@
+print(sum(divmod(*map(int,s.split()[::-1]))[1]for s in open(0).readlines()[1:]))
