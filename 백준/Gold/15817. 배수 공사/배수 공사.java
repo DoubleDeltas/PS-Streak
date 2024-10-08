@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -10,7 +9,6 @@ public class Main {
 
     static int N, x;
     static int[] L, C;
-    static int ans;
 
     static int[][] memo;    // memo[i][j] = i번 파이프까지 봤을 때 길이가 j가 되는 경우의 수
 
