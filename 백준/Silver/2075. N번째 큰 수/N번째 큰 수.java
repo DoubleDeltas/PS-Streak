@@ -8,7 +8,7 @@ public class Main {
     static StringTokenizer tk = null;
 
     static int N;
-    static PriorityQueue<Integer> pq = new PriorityQueue<>();
+    static PriorityQueue<Integer> pq = new PriorityQueue<>(6);
 
     public static void main(String[] args) throws Exception {
         N = Integer.parseInt(rd.readLine());
