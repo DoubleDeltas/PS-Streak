@@ -1,6 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -8,20 +8,26 @@ public class Main {
     static StringTokenizer tk = null;
 
     static int N;
-    static int[] l;
+    static PriorityQueue<Integer> pq = new PriorityQueue<>();
 
     public static void main(String[] args) throws Exception {
         N = Integer.parseInt(rd.readLine());
 
-        l = new int[N*N];
-        for (int i=0; i<N; i++) {
+        tk = new StringTokenizer(rd.readLine());
+        for (int i=0; i<N; i++) {   // 1st line
+            int a = Integer.parseInt(tk.nextToken());
+            pq.offer(a);
+        }
+
+        for (int i=1; i<N; i++) {   // rest n-1 lines
             tk = new StringTokenizer(rd.readLine());
             for (int j=0; j<N; j++) {
-                l[i*N+j] = Integer.parseInt(tk.nextToken());
+                int a = Integer.parseInt(tk.nextToken());
+                pq.offer(a);
+                pq.poll();
             }
         }
 
-        Arrays.sort(l);
-        System.out.println(l[N*N-N]);
+        System.out.println(pq.poll());  // nth greatest
     }
 }
