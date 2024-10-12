@@ -1,0 +1,1 @@
+for j in range(int(input())):print('sprlScaoipipczosekacsr rko  d r    s'[('sprlS'.find(input()[0])+2+j%2*2)%5::5])
