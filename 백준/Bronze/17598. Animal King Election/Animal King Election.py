@@ -1,0 +1,1 @@
+print('TLiigoenr'[[*zip(*open(0))][0].count('L')>4::2])
