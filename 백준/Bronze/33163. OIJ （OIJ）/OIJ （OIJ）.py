@@ -1,1 +1,1 @@
-input();print(''.join([dict(['JO','OI','IJ'])[c]for c in input()]))
+print(''.join([dict(['JO','OI','IJ'])[c]for c in[*open(0)][1][:-1]]))
