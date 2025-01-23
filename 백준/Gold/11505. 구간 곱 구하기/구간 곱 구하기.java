@@ -13,7 +13,6 @@ public class Main {
     static final int ID = 1;
     static final int MOD = 1_000_000_007;
     static int[] segtree, zerotree;
-    static Map<Integer, Integer> inverses = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
         tk = new StringTokenizer(rd.readLine());
@@ -60,8 +59,8 @@ public class Main {
         int prev = segtree[i];
         segtree[i] = to;
         while (i > 1) {
-            segtree[i/2] = times(times(segtree[i/2], inverse(prev)), to);
             i /= 2;
+            segtree[i] = times(segtree[i*2], segtree[i*2+1]);
         }
     }
 
@@ -85,20 +84,5 @@ public class Main {
 
     static int times(int a, int b) {
         return (int) (((long) a * b) % MOD);
-    }
-
-    static int inverse(int x) {
-        if (!inverses.containsKey(x))
-            inverses.put(x, pow(x, MOD - 2));
-        return inverses.get(x);
-    }
-
-    static int pow(int a, int b) {
-        if (b == 1) return a;
-        int sqrt = pow(a, b / 2);
-        int x = times(sqrt, sqrt);
-        if (b % 2 == 1)
-            x = times(x, a);
-        return x;
     }
 }
