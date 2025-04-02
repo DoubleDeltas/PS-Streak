@@ -1,0 +1,1 @@
+print(sum((c=='B')+(c in{*'@AaBbDdegOoPpQqR'})for c in input()))
