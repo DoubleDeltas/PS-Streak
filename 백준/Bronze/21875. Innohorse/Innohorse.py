@@ -1,0 +1,5 @@
+a,b = map(ord,input())
+c,d = map(ord,input())
+x,y = abs(a-c), abs(b-d)
+x,y = min(x,y), max(x,y)
+print(x, y)
