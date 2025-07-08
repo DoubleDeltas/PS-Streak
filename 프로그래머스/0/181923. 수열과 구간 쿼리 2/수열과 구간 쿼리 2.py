@@ -1,0 +1,1 @@
+solution=lambda a,Q:[min(l)if(l:=[*filter(k.__lt__,a[s:e+1])])else-1for s,e,k in Q]
