@@ -1,1 +1,1 @@
-solution=lambda l:[*[i for i in range(len(l))if l[i]<0],-1][0]
+solution=lambda l:([i for i in range(len(l))if l[i]<0]or[-1])[0]
