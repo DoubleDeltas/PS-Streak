@@ -1,0 +1,1 @@
+print(['Oh My God!','Success!'][input()>'5'])
