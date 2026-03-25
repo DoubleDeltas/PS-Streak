@@ -1,2 +1,2 @@
 x,y,z,u,v,w=map(int,open(0).read().split())
-print((x*u+2*y*v+5*z*w)//100)
+print(sum(map(eval,map('*'.join,["xu","2yv","5zw"])))//100)
