@@ -1,2 +1,3 @@
+f=lambda s:eval('*'.join(s))//100
 x,y,z,u,v,w=map(int,open(0).read().split())
-print(sum(map(eval,map('*'.join,["xu","2yv","5zw"])))//100)
+print(f("xu")+f("2yv")+f("5zw"))
