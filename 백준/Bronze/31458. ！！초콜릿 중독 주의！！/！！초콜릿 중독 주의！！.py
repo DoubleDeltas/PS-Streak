@@ -1,0 +1,1 @@
+for l in[*open(0)][1:]:t="1"in l;i=l.find("01"[t]);print(i%2^(i<len(l)-2or t))
