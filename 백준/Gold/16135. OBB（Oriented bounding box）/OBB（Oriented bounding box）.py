@@ -14,7 +14,7 @@ B1x, B1y = bhx - bmx, bhy - bmy
 A2x, A2y = a1x - ahx, a1y - ahy
 B2x, B2y = b1x - bhx, b1y - bhy
 
-for ux, uy in (a2x-a1x, a2y-a1y), (a3x-a2x, a3y-a2y):
+for ux, uy in (a2x-a1x, a2y-a1y), (a3x-a2x, a3y-a2y), (b2x-b1x, b2y-b1y), (b3x-b2x, b3y-b2y):
  adotu = lambda vx, vy: adot(vx, vy, ux, uy)
  if adotu(dx, dy) >= adotu(A1x, A1y) + adotu(A2x, A2y) + adotu(B1x, B1y) + adotu(B2x, B2y):
   print(0)
