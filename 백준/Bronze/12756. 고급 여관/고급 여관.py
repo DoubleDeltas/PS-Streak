@@ -1,0 +1,6 @@
+a,A=map(int,input().split())
+b,B=map(int,input().split())
+d=((A+b-1)//b)-((B+a-1)//a)
+if d>0:print("PLAYER A")
+elif d<0:print("PLAYER B")
+else:print("DRAW")
