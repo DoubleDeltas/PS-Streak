@@ -34,46 +34,50 @@ public class Main {
 			}
 		}
 		
-		q.offer(new Node(0, sy, sx, 0));
+		q.offer(new Node(0, sy, sx));
 		enqueued[0][sy][sx] = true;
 		
-		while (!q.isEmpty()) {
-			Node node = q.poll();
-			int flag = node.flag;
-			int y = node.y;
-			int x = node.x;
-			int move = node.move;
-			
-			if (map[y][x] == '1') {
-				System.out.println(move);
-				return;
-			}
-			if ('a' <= map[y][x] && map[y][x] <= 'f')
-				flag |= 1 << (map[y][x] - 'a');
-			
-			for (int d=0; d<4; d++) {
-				int ny = y + dy[d];
-				int nx = x + dx[d];
-				if (ny < 0 || ny >= N || nx < 0 || nx >= M) continue;
-				if (enqueued[flag][ny][nx]) continue;
-				if (map[ny][nx] == '#') continue;
-				if ('A' <= map[ny][nx] && map[ny][nx] <= 'F' && (flag & 1 << (map[ny][nx] - 'A')) == 0) continue;
+		int m = 0;
+		while (true) {
+			int size = q.size();
+			if (size == 0) break;
+			for (int i=0; i<size; i++) {
+				Node node = q.poll();
+				int flag = node.flag;
+				int y = node.y;
+				int x = node.x;
 				
-				q.offer(new Node(flag, ny, nx, move + 1));
-				enqueued[flag][ny][nx] = true;
+				if (map[y][x] == '1') {
+					System.out.println(m);
+					return;
+				}
+				if ('a' <= map[y][x] && map[y][x] <= 'f')
+					flag |= 1 << (map[y][x] - 'a');
+				
+				for (int d=0; d<4; d++) {
+					int ny = y + dy[d];
+					int nx = x + dx[d];
+					if (ny < 0 || ny >= N || nx < 0 || nx >= M) continue;
+					if (enqueued[flag][ny][nx]) continue;
+					if (map[ny][nx] == '#') continue;
+					if ('A' <= map[ny][nx] && map[ny][nx] <= 'F' && (flag & 1 << (map[ny][nx] - 'A')) == 0) continue;
+					
+					q.offer(new Node(flag, ny, nx));
+					enqueued[flag][ny][nx] = true;
+				}
 			}
+			m++;
 		}
 		
 		System.out.println(-1);
 	}
 	
 	static class Node {
-		int flag, y, x, move;
-		Node(int flag, int y, int x, int move) {
+		int flag, y, x;
+		Node(int flag, int y, int x) {
 			this.flag = flag;
 			this.y = y;
 			this.x = x;
-			this.move = move;
 		}
 	}
 }
