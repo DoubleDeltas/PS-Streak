@@ -1,0 +1,7 @@
+A=input()
+B=input()
+print(''.join(['1' if A[i]=='1' and B[i]=='1' else '0' for i in range(100000)]))
+print(''.join(['1' if A[i]=='1' or B[i]=='1' else '0' for i in range(100000)]))
+print(''.join(['1' if A[i] != B[i] else '0' for i in range(100000)]))
+print(''.join(['1' if A[i]!='1' else '0' for i in range(100000)]))
+print(''.join(['1' if B[i]!='1' else '0' for i in range(100000)]))
